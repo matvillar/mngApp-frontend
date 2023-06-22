@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { AiFillFileAdd } from 'react-icons/ai';
-import { GET_PROJECTS } from '../queries/projectQuery';
+// import { AiFillFileAdd } from 'react-icons/ai';
+// import { GET_PROJECTS } from '../queries/projectQuery';
 
 export default function EditButton({ project }) {
   const [name, setName] = useState(project.name);
