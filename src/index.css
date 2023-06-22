@@ -48,3 +48,10 @@ code {
 .icon {
   margin-right: 5px;
 }
+
+.notfound-img {
+  position: absolute;
+  top: 30%;
+
+  z-index: -300;
+}

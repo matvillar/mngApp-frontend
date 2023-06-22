@@ -1,8 +1,10 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'; // InMemoryCache shows the data in the cache no need to refresh the page
-import TheClients from './components/TheClients';
-import Projects from './components/Projects';
-import AddClientModal from './components/AddClientModal';
+
+import HomePage from './pages/HomePage';
+import ErrorPage from './pages/ErrorPage';
+import OneProject from './pages/OneProject';
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -31,12 +33,16 @@ function App() {
   return (
     <>
       <ApolloProvider client={client}>
-        <Header />
-        <div className="container">
-          <AddClientModal />
-          <Projects />
-          <TheClients />
-        </div>
+        <Router>
+          <Header />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<HomePage />}></Route>
+              <Route path="/project/:id" element={<OneProject />}></Route>
+              <Route path="*" element={<ErrorPage />}></Route>
+            </Routes>
+          </div>
+        </Router>
       </ApolloProvider>
     </>
   );
