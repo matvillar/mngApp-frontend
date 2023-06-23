@@ -31,32 +31,36 @@ const client = new ApolloClient({
 
 function App() {
   const { isAuthenticated } = useAuth0();
+  let pageLoaded = false;
+  // set timeout for pageLoaded
+  setTimeout(() => {
+    pageLoaded = true;
+  }, 1000);
   if (!isAuthenticated) {
     return (
       <>
         <BeforeLogin />
       </>
     );
-  } else {
-    return (
-      <>
-        {/* <LoginButton /> */}
-
-        <ApolloProvider client={client}>
-          <Router>
-            <Header />
-            <div className="container">
-              <Routes>
-                <Route path="/" element={<HomePage />}></Route>
-                <Route path="/project/:id" element={<OneProject />}></Route>
-                <Route path="*" element={<ErrorPage />}></Route>
-              </Routes>
-            </div>
-          </Router>
-        </ApolloProvider>
-      </>
-    );
   }
+  return (
+    <>
+      {/* <LoginButton /> */}
+
+      <ApolloProvider client={client}>
+        <Router>
+          <Header />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<HomePage />}></Route>
+              <Route path="/project/:id" element={<OneProject />}></Route>
+              <Route path="*" element={<ErrorPage />}></Route>
+            </Routes>
+          </div>
+        </Router>
+      </ApolloProvider>
+    </>
+  );
 }
 
 export default App;
